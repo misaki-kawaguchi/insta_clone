@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jquery-rails'
 gem 'popper_js'
+gem 'font-awesome-sass'
 gem 'sorcery'
 gem 'slim-rails'
 gem 'redis-rails'
