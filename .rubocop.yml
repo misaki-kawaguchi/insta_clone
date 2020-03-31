@@ -1,0 +1,100 @@
+# 将来的には対応する規約の読込
+inherit_from: .rubocop_todo.yml
+
+# 追加した規約ファイル読込
+require:
+  - rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
+    - 'node_modules/**/*'
+  DisplayCopNames: true
+Rails:
+  Enabled: true
+
+# ブロック開始後に改行が入ってるかチェック
+Layout/MultilineBlockLayout:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+# Assignment,Branch,Conditionの合計ポイントをチェック
+Metrics/AbcSize:
+  Max: 25
+
+# Blockの長さをチェック
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'Gemfile'
+    - 'config/**/*'
+    - 'spec/**/*_spec.rb'
+    - 'lib/tasks/*'
+
+# Classの長さをチェック
+Metrics/ClassLength:
+  CountComments: false
+  Max: 300
+
+# 循環的複雑度をチェック
+Metrics/CyclomaticComplexity:
+  Max: 30
+
+# 1行あたりの長さをチェック
+Metrics/LineLength:
+  Enabled: false
+
+# メソッドの長さをチェック
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+
+# アクセサメソッドの名前チェック(get_/set_)
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/controllers/**/*'
+
+# 日本語でのコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# 1行に複数ブロックが含まれているかチェック
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+# モジュール名::クラス名の定義を許可
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# クラスのコメント必須を無視
+Style/Documentation:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# if式が1行で収まるかチェック
+Style/IfUnlessModifier:
+  Enabled: false
+
+# 本文が１行のときwhile/until修飾子を利用しているかチェック
+Style/WhileUntilModifier:
+  Enabled: false
+
+# gemがアルファベット順に並んでいるかチェック
+Bundler/OrderedGems:
+  Enabled: false
+# html_safeメソッドやrawメソッドなどの使用をチェック
+Rails/OutputSafety:
+  Enabled: true
+  Exclude:
+    - 'app/helpers/**/*.rb'
+
+# 双方間の関連付けで、異なるオブジェクトを参照しないように指定しているかチェック
+Rails/InverseOf:
+  Enabled: false
