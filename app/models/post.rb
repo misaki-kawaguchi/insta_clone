@@ -19,4 +19,13 @@
 #
 class Post < ApplicationRecord
   belongs_to :user
+
+  # PostモデルにCarrierwaveを関連付けている、複数画像の場合はmount_uploadersにする
+  mount_uploaders :images, PostImageUploader
+  # テキスト型のカラムに配列を格納する
+  serialize :images, JSON
+
+  validates :images, presence: true
+  validates :body, presence: true, length: { maximum: 500 }
+
 end
