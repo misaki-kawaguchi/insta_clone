@@ -1,2 +1,6 @@
-h1 Posts#edit
-p Find me in app/views/posts/edit.html.slim
+.container
+  .row
+    .col-md-6.col-12.offset-3
+      .card
+        .card-body
+          = render 'form', post: @post
