@@ -25,4 +25,9 @@ class User < ApplicationRecord
 
   # postが削除されるとuserも削除される
   has_many :posts, dependent: :destroy
+
+  #ユーザーと投稿したユーザーが一致するかどうか
+  def own?(object)
+    id == object.user_id
+  end
 end

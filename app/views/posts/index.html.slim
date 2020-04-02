@@ -1,2 +1,35 @@
-h1 Posts#index
-p Find me in app/views/posts/index.html.slim
+.container
+  .row
+    .col-md-8.col-12
+      / _post.html.slimを繰り返し表示する
+      = render @posts
+
+    .col-md-4.col-12
+      / ログインしている場合、サイドカラムに自分のアイコンとユーザー名が表示される
+      - if logged_in?
+        .profile-box.mb-3
+          = image_tag 'profile-placeholder.png', size: '50x50', class: 'rounded-circle mr-1'
+          = current_user.username
+
+      .users-box
+        .card
+          .card-header
+            | ユーザー
+          .card-body
+            .user.mb-3
+             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+             | ダミー1
+            .user.mb-3
+             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+             | ダミー2
+            .user.mb-3
+             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+             | ダミー3
+            .user.mb-3
+             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+             | ダミー4
+            .user.mb-3
+             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+             | ダミー5
+          .card-footer
+            = link_to 'すべて見る', '#'
