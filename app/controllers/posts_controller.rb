@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   # Sorceryが提供しているメソッド（認証済みか否かを判定する）
-  before_login :require_login, only: %i[:new, :create, :edit, :update, :deatroy]
+  before_action :require_login, only: %i[new create edit update destroy]
 
   #/posts
    # userとpostのテーブルからデータを取得（N+1問題）
