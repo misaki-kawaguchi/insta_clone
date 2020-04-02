@@ -1,22 +1,21 @@
 class PostsController < ApplicationController
-
   # Sorceryが提供しているメソッド（認証済みか否かを判定する）
   before_action :require_login, only: %i[new create edit update destroy]
 
-  #/posts
-   # userとpostのテーブルからデータを取得（N+1問題）
-    # 降順に並べる
+  # /posts
+  # userとpostのテーブルからデータを取得（N+1問題）
+  # 降順に並べる
   def index
     @posts = Post.all.includes(:user).order(created_at: :desc)
   end
 
-  #/posts/new
+  # /posts/new
   def new
     @post = Post.new
   end
 
-  #ログインしているユーザーが投稿できる
-  #保存できたらトップページに戻る。保存できない場合は新規投稿ページに戻る
+  # ログインしているユーザーが投稿できる
+  # 保存できたらトップページに戻る。保存できない場合は新規投稿ページに戻る
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -33,8 +32,8 @@ class PostsController < ApplicationController
     @post = current_user.posts.find(params[:id])
   end
 
-  #ログインしているユーザーの投稿を探す
-  #更新できたらトップページに戻る。更新できない場合が編集ページに戻る。
+  # ログインしているユーザーの投稿を探す
+  # 更新できたらトップページに戻る。更新できない場合が編集ページに戻る。
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)

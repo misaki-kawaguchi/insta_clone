@@ -98,3 +98,15 @@ Rails/OutputSafety:
 # 双方間の関連付けで、異なるオブジェクトを参照しないように指定しているかチェック
 Rails/InverseOf:
   Enabled: false
+
+# unique indexがついていないカラムに対して、Active Recordのレイヤーでuniquenessバリデーションを書いている場合に警告
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+  
+# Railsアプリケーションにおけるパスの連結の際に、Rails.root.joinメソッドを使用する様に推奨
+Rails/FilePath:
+  Enabled: false
+
+# Rake ファイルのタスク定義で :environment タスクに依存しているか検査
+Rails/RakeEnvironment:
+  Enabled: false
