@@ -3,6 +3,7 @@
     .col-md-8.col-12
       / _post.html.slimを繰り返し表示する
       = render @posts
+      = paginate @posts
 
     .col-md-4.col-12
       / ログインしている場合、サイドカラムに自分のアイコンとユーザー名が表示される

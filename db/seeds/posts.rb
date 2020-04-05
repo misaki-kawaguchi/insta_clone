@@ -1,4 +1,4 @@
-User.limit(10).each do |user|
+User.limit(100).each do |user|
   post = user.posts.create(
     # Full Phrase
     body: Faker::Hacker.say_something_smart,
