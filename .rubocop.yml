@@ -98,3 +98,4 @@ Rails/OutputSafety:
 # 双方間の関連付けで、異なるオブジェクトを参照しないように指定しているかチェック
 Rails/InverseOf:
   Enabled: false
+

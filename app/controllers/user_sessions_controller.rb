@@ -1,5 +1,4 @@
 class UserSessionsController < ApplicationController
-
   # /login
   def new; end
 

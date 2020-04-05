@@ -1,0 +1,25 @@
+.card.mb-5.post
+  .card-header
+    .d-flex.align-items-center
+      = image_tag 'profile-placeholder.png', size: '40×40', class: 'rounded-circle mr-1'
+      = post.user.username
+      / ログインしている且つ自分が投稿したものなら
+      - if current_user&.own?(post)
+        .ml-auto
+        / 削除ボタン
+        = link_to post_path(post),  class: 'mr-3', method: :delete, data: { confirm: '本当に削除しますか？' } do
+          = icon 'far', 'trash-alt', class: 'fa-lg'
+        / 編集ボタン
+        = link_to edit_post_path(post) do
+          = icon 'far', 'edit', class: 'fa-lg'
+  / 詳細ページ
+  = link_to post_path(post) do
+    .swiper-container
+      .swiper-wrapper
+        - post.images.each do |image|
+          .swiper-slide
+            = image_tag image.url, class: 'card-img-top'
+      .swiper-pagination
+  .card-body
+    .card-text
+      = post.body        

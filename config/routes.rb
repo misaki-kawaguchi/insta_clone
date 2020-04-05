@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root 'users#new'
+  root 'posts#index'
 
-  #ユーザー登録
-  resources :users, only: %i[new create]
-  #ログイン、ログアウト
+  # ログイン、ログアウト
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy'
+
+  # ユーザー登録
+  resources :users, only: %i[new create]
+
+  # 投稿
+  resources :posts
 end
