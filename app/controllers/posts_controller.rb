@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # userとpostのテーブルからデータを取得（N+1問題）
   # 降順に並べる
   def index
-    @posts = Post.all.includes(:user).order(created_at: :desc)
+    @posts = Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
   end
 
   # /posts/new
