@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
 
   # 投稿
-  resources :posts
+  resources :posts do
+    #コメント
+    resources :comments, shallow: true
+  end
 end
