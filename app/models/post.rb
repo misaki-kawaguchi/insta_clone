@@ -27,4 +27,7 @@ class Post < ApplicationRecord
 
   validates :images, presence: true
   validates :body, presence: true, length: { maximum: 500 }
+
+  # commentが削除されるとpostも削除される
+  has_many :comments, dependent: :destroy
 end
