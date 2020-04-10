@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # 投稿
   resources :posts do
-    #コメント
+    # コメント
     resources :comments, shallow: true
   end
 end

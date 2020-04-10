@@ -12,13 +12,13 @@ div id="comment-#{comment.id}"
 
     / 編集・削除ボタン
     .col-1
-    / ログイン中かつ自分のコメントの場合
+      / ログイン中かつ自分のコメントの場合
       - if current_user&.own?(comment)
-        / 削除
+        / 削除（非同期）
         = link_to comment_path(comment), class: 'mr-3', method: :delete, data: {confirm: '本当に削除しますか？'}, remote: true do
           = icon 'far', 'trash-alt', class: 'fa-sm'
 
-        / 編集
+        / 編集（非同期）
         = link_to edit_comment_path(comment), remote: true do
           = icon 'far', 'edit', class: 'fa-sm'
   hr
