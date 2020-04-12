@@ -47,6 +47,10 @@ class PostsController < ApplicationController
   # /post/:id
   def show
     @post = Post.find(params[:id])
+    # commentsを降順に並べる
+    @comments = @post.comments.order(created_at: :desc)
+    # commentの新規作成
+    @comment = Comment.new
   end
 
   # ログインしているユーザーのみ削除できる

@@ -1,0 +1,10 @@
+/ コメントにエラーがある場合
+- if @comment.errors.present?
+  / 改行して繋げる
+  | alert("#{@comment.errors.full_messages.join('\n')}");
+
+- else
+  / .comments-boxの先頭にcomment.html.slimをレンダリングする
+  | $('.comments-box').prepend("#{j render('comments/comment', comment: @comment)}");
+  / _form.html.slimの.input-comment-bodyのvalueを取得する
+  | $('.input-comment-body').val('');

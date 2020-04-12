@@ -1,0 +1,5 @@
+/ #modal-containerに対して_modal_form.html.slimをレンダリングする
+| $("#modal-container").html("#{escape_javascript(render 'modal_form', comment: @comment)}");
+
+/ _modal_form.html.slimの#comment-edit-modalを開く
+| $("#comment-edit-modal").modal('show');

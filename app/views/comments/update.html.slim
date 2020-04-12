@@ -1,0 +1,10 @@
+/ コメントにエラーがある場合
+- if @comment.errors.present?
+  / 改行して繋げる
+  | alert("#{@comment.errors.full_messages.join('\n')}");
+
+- else
+  / #comment-#{@comment.id}の先頭にcomment.html.slimをレンダリングする
+  | $("#comment-#{@comment.id}").html("#{j render('comments/comment', comment: @comment)}");
+  _modal_form.html.slimの#comment-edit-modalを隠す
+  | $("#comment-edit-modal").modal('hide');
