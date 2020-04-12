@@ -30,4 +30,6 @@ class Post < ApplicationRecord
 
   # commentが削除されるとpostも削除される
   has_many :comments, dependent: :destroy
+  # likeが削除されるとuserも削除される
+  has_many :likes, dependent: :destroy
 end

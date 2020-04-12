@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   # commentが削除されるとuserも削除される
   has_many :comments, dependent: :destroy
+  # likeが削除されるとuserも削除される
+  has_many :likes, dependent: :destroy
 
   # ユーザーと投稿したユーザーが一致するかどうか
   def own?(object)
