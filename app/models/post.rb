@@ -32,4 +32,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   # likeが削除されるとuserも削除される
   has_many :likes, dependent: :destroy
+  # 中間テーブルlikesを経由してuserモデルを参照している（多対多）
+  has_many :like_users, through: :likes, source: :user
 end

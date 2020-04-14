@@ -30,6 +30,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   # likeが削除されるとuserも削除される
   has_many :likes, dependent: :destroy
+  # 中間テーブルlikesを経由してpostモデルを参照している（多対多）
+  has_many :like_posts, through: :likes, source: :post
 
   # ユーザーと投稿したユーザーが一致するかどうか
   def own?(object)
