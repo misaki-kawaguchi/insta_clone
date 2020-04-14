@@ -14,4 +14,7 @@ Rails.application.routes.draw do
     # コメント
     resources :comments, shallow: true
   end
+
+  # いいね機能
+  resources :likes, only: %i[create destroy]
 end
