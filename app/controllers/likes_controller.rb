@@ -3,7 +3,7 @@ class LikesController < ApplicationController
 
   # Postモデルのidを探し、ログインしているユーザーが投稿にいいねする（like_postsにpost_idを追加）
   def create
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post_id])
     current_user.like(@post)
   end
 
