@@ -37,4 +37,19 @@ class User < ApplicationRecord
   def own?(object)
     id == object.user_id
   end
+
+  # like_postsにpost_idを追加する
+  def like(post)
+    like_posts << post
+  end
+
+  # like_postsに追加したpost_idを削除する
+  def unlike(post)
+    like_posts.destroy(post)
+  end
+
+  # like_postsにpost_idが含まれている場合はtrueを返す
+  def like?(post)
+    like_posts.include?(post)
+  end
 end

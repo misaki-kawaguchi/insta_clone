@@ -1,0 +1,8 @@
+div id="like_area-#{post.id}"
+  / ログインしているユーザーがいいねしている場合（likes_postsにpost_idが追加されている場合）
+  - if current_user.like?(post)
+    / _unlike.html.slimを表示
+    = render 'unlike', post: post
+  - else
+    / _like.html.slimを表示
+    = render 'like', post: post
