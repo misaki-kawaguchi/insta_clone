@@ -1,3 +1,4 @@
 / destroy.js.slimを使ってレスポンスを作成。ログインしているユーザーがいいねした投稿（posts/post.id）を探し、いいねを外す
 = link_to like_path(current_user.likes.find_by(post_id: post.id)), method: :delete, remote: true do
-  = icon 'far', 'heart', class: 'fa-lg'
+  = icon 'fa', 'heart', class: 'fa-lg'
+  
