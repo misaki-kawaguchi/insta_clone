@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
   before_action :require_login, only: %i[create destroy]
 
-  # Postモデルのidを探し、ログインしているユーザーが投稿にいいねする（like_postsにpost_idを追加）
+  # パラメータとして渡ってきたpost_idを元にPostテーブルから対象のレコードを取得し、ログインしているユーザーが投稿にいいねする（like_postsにpost_idを追加）
   def create
     @post = Post.find(params[:post_id])
     current_user.like(@post)

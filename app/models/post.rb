@@ -28,9 +28,9 @@ class Post < ApplicationRecord
   validates :images, presence: true
   validates :body, presence: true, length: { maximum: 500 }
 
-  # commentが削除されるとpostも削除される
+  # postが削除されるとcommentも削除される
   has_many :comments, dependent: :destroy
-  # likeが削除されるとuserも削除される
+  # postが削除されるとlikeも削除される
   has_many :likes, dependent: :destroy
   # 中間テーブルlikesを経由してuserモデルを参照している（多対多）
   has_many :like_users, through: :likes, source: :user
