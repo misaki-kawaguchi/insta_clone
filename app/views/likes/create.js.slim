@@ -1,0 +1,2 @@
+/ _like.html.slimのremote true doが設定されたボタンを押すとレスポンスが作成される（_unlike.html.slimが表示される）
+| $('#like_area-#{@post.id}').html("#{j render('posts/unlike', post: @post)}")
