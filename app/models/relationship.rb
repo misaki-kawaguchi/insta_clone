@@ -18,4 +18,9 @@ class Relationship < ApplicationRecord
   # FollowerモデルとFollowedモデルを擬似的に作成（Userモデルが親モデルとなる）
   belongs_to :follower, class_name: 'User'
   belongs_to :followed, class_name: 'User'
+  # 空欄だとエラーになる
+  validates :follower_id, presence: true
+  validates :followed_id, presence: true
+  # follower_idとfollowed_idは重複しない
+  validates :follower_id, uniqueness: { scope: :followed_id }
 end
