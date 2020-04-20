@@ -75,7 +75,13 @@ class User < ApplicationRecord
     like_posts.include?(post)
   end
 
+  # followingにfollowed_idを追加する
   def follow(other_user)
     following << other_user
+  end
+
+  # followingに追加したfollower_idを削除する
+  def unfollow(other_user)
+    following.destroy(other_user)
   end
 end
