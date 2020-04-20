@@ -15,7 +15,7 @@
 #  index_relationships_on_follower_id_and_followed_id  (follower_id,followed_id) UNIQUE
 #
 class Relationship < ApplicationRecord
-  # FollowerモデルとFollowedモデルを擬似的に作成（Userモデルが親モデルとなる）
+  # FollowerモデルとFollowedモデルを作成（Userモデルからモデル名を変更）
   belongs_to :follower, class_name: 'User'
   belongs_to :followed, class_name: 'User'
   # 空欄だとエラーになる
