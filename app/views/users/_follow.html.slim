@@ -1,0 +1,3 @@
+/ フォローボタンを押すとcreate.js.slimを使ってレスポンスが作成される→書かれているJSの処理が実行（_unfollow.html.slimが表示される）
+= link_to relationships_path(followed_id: user.id), class: 'btn btn-raised btn-outline-warning', method: :post, remote: true do
+  | フォロー
