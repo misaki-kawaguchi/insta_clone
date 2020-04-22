@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   # ユーザー登録
-  resources :users, only: %i[new create]
+  resources :users, only: %i[index new create show]
 
   # 投稿
   resources :posts do

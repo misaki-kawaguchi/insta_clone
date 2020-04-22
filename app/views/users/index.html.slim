@@ -1,0 +1,13 @@
+/ ユーザー一覧ページ
+.container
+  .row
+    .col-md-6.col-12.offset-md-3.mb-3
+      .card
+        .card-body
+          / _user.html.slimを繰り返し表示
+          / @users.each do |user|
+          / = render 'user', user: user
+          = render @users
+
+    .col-md-6.col-12.offset-md-3
+     = paginate @users

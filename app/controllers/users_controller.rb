@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+
+  # /users/
+  def index
+    @users = User.all.page(params[:page]).order(created_at: :desc)
+  end
+
   # /users/new
   def new
     @user = User.new
