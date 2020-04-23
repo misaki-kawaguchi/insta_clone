@@ -57,6 +57,9 @@ class User < ApplicationRecord
   # :sourceパラメーターを使いfollowers配列の元はfollower idの集合であることを明示的に伝える
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # 登録日が新しい順に表示する、引数を渡すことにより表示件数を調整できる
+  scope :recent, ->(count) { order(created_at: :desc).limit(count) }
+
   # ユーザーと投稿したユーザーが一致するかどうか
   def own?(object)
     id == object.user_id

@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   # 降順に並べる
   def index
     @posts = Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
+    # 登録日が新しい順に5件分表示する
     @users = User.recent(5)
   end
 
