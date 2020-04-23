@@ -94,4 +94,11 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  # following_ids→自分がフォローしているユーザーIDの集合
+  # id→ユーザー（自分）のID
+  # 自分のIDとフォローしているユーザーのIDを集める
+  def feed
+    Post.where(user_id: following_ids << id)
+  end
 end
