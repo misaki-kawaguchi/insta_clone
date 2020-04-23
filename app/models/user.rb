@@ -49,8 +49,8 @@ class User < ApplicationRecord
   # followed_idという外部キーを使い、passive_relationshipsモデルを通してフォロワーを特定する
   # userモデルが削除されるとpassive_relationshipモデルも削除される
   has_many :passive_relationships, class_name: 'Relationship',
-                                    foreign_key: 'followed_id',
-                                    dependent: :destroy
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
 
   # relationshipsテーブル（passive_relationships）のfollower_idを使ってフォロワーを探す
   # followers配列の元はfollower idの集合である

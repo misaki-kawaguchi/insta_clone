@@ -8,10 +8,10 @@ class PostsController < ApplicationController
   def index
     # ログインしている場合は自分とフォローしているユーザーの投稿を、ログインしていない場合は全ての投稿を表示する
     @posts = if current_user
-              current_user.feed.includes(:user).page(params[:page]).order(created_at: :desc)
-            else
-              Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
-            end
+               current_user.feed.includes(:user).page(params[:page]).order(created_at: :desc)
+             else
+               Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
+             end
     # 登録日が新しい順に5件分表示する
     @users = User.recent(5)
   end
