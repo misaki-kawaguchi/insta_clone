@@ -33,6 +33,33 @@ class User < ApplicationRecord
   # 中間テーブルlikesを経由してpostモデルを参照している（多対多）
   has_many :like_posts, through: :likes, source: :post
 
+  # 【能動的関係（〇〇をフォローする）に対して1対多 (has_many) の関連付けを実装する（active_relationship）】
+  # follower_idという外部キーを使い、active_relationshipsモデルを通してフォローしているユーザーを特定する
+  # userモデルが削除されるとactive_relationshipモデルも削除される
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent: :destroy
+
+  # relationshipsテーブル（active_relationships）のfollowed_idを使ってフォローしたユーザーを探す
+  # user.followedsは英語として不適切なため、user.followingという名前を使う
+  # :sourceパラメーターを使いfollowing配列の元はfollowed idの集合であることを明示的に伝える
+  has_many :following, through: :active_relationships, source: :followed
+
+  # 【受動的関係（〇〇にフォローされている）に対して1対多 (has_many) の関連付けを実装する（passive_relationship）】
+  # followed_idという外部キーを使い、passive_relationshipsモデルを通してフォロワーを特定する
+  # userモデルが削除されるとpassive_relationshipモデルも削除される
+  has_many :passive_relationships, class_name: 'Relationship',
+                                   foreign_key: 'followed_id',
+                                   dependent: :destroy
+
+  # relationshipsテーブル（passive_relationships）のfollower_idを使ってフォロワーを探す
+  # followers配列の元はfollower idの集合である
+  # :sourceパラメーターを使いfollowers配列の元はfollower idの集合であることを明示的に伝える
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  # 登録日が新しい順に表示する、引数を渡すことにより表示件数を調整できる
+  scope :recent, ->(count) { order(created_at: :desc).limit(count) }
+
   # ユーザーと投稿したユーザーが一致するかどうか
   def own?(object)
     id == object.user_id
@@ -51,5 +78,27 @@ class User < ApplicationRecord
   # like_postsにpost_idが含まれている場合はtrueを返す
   def like?(post)
     like_posts.include?(post)
+  end
+
+  # followingにfollowed_idを追加する
+  def follow(other_user)
+    following << other_user
+  end
+
+  # followingに追加したfollower_idを削除する
+  def unfollow(other_user)
+    following.destroy(other_user)
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  # following_ids→自分がフォローしているユーザーIDの集合
+  # id→ユーザー（自分）のID
+  # 自分のIDとフォローしているユーザーのIDを集める
+  def feed
+    Post.where(user_id: following_ids << id)
   end
 end

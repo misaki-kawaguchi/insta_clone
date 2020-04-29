@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  # /users/
+  def index
+    @users = User.all.page(params[:page]).order(created_at: :desc)
+  end
+
   # /users/new
   def new
     @user = User.new
@@ -13,6 +18,11 @@ class UsersController < ApplicationController
       flash.now[:danger] = 'ユーザーの作成に失敗しました'
       render :new
     end
+  end
+
+  # users/:id
+  def show
+    @user = User.find(params[:id])
   end
 
   private

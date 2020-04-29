@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'user_sessions#destroy'
 
   # ユーザー登録
-  resources :users, only: %i[new create]
+  resources :users, only: %i[index new create show]
 
   # 投稿
   resources :posts do
@@ -17,4 +17,7 @@ Rails.application.routes.draw do
 
   # いいね機能
   resources :likes, only: %i[create destroy]
+
+  # フォロー機能
+  resources :relationships, only: %i[create destroy]
 end

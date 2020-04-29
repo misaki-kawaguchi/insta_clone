@@ -1,8 +1,13 @@
 .container
   .row
     .col-md-8.col-12
-      / _post.html.slimを繰り返し表示する
-      = render @posts
+      / 投稿が1つでもあれば投稿を表示、なければ「投稿がありません」と表示される
+      - if @posts.present?
+        / _post.html.slimを繰り返し表示する
+        = render @posts
+      - else
+        .text-center.font-weight-bold
+        | 投稿がありません
       = paginate @posts
 
     .col-md-4.col-12
@@ -17,20 +22,6 @@
           .card-header
             | ユーザー
           .card-body
-            .user.mb-3
-             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-             | ダミー1
-            .user.mb-3
-             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-             | ダミー2
-            .user.mb-3
-             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-             | ダミー3
-            .user.mb-3
-             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-             | ダミー4
-            .user.mb-3
-             = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
-             | ダミー5
+            = render @users
           .card-footer
-            = link_to 'すべて見る', '#'
+            = link_to 'すべて見る', users_path
