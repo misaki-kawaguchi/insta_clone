@@ -1,10 +1,10 @@
 class SearchPostsForm
   # モデル名の調査、変換、翻訳、バリデーションが使えるようになる
   include ActiveModel::Model
-  #  既存のアトリビュートの値を適切な型に変換したり、任意のアトリビュートを定義出来る
+  # 既存のアトリビュートの値を適切な型に変換したり、任意のアトリビュートを定義出来る
   include ActiveModel::Attributes
 
-  # bodyをstring型に変換する
+  # paramsで渡されるパラメータ名を並べる
   attribute :body, :string
 
   def search
