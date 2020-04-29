@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
     @search_form = SearchPostsForm.new(search_post_params)
   end
 
-  # 指定したキーがないときにエラーを出さないようにする、パラメーターがなかったときは{}がデフォルト値として評価される
+  # params.fetch(:q, {})はparams[:q]が空の場合{}を、params[:q]が空でない場合はparams[:q]を返してくれる
+  # params[:q][:body]で値を取り出す
   def search_post_params
     params.fetch(:q, {}).permit(:body)
   end
