@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :users, only: %i[index new create show]
 
   # 投稿
-  resources :posts do
+  resources :posts, shallow: true do
+    # 検索(collectionを使うとposts/searchのようにpost_id無しのルーティングとなる)
+    collection do
+      get :search
+    end
     # コメント
     resources :comments, shallow: true
   end
