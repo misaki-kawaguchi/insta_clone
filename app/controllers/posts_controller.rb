@@ -69,7 +69,7 @@ class PostsController < ApplicationController
 
   # /posts/search
   # search→SearchPostsFormで定義したもの
-  # 渡したbodyから完全一致検索し、ヒットしたものを@postsに代入する
+  # 渡したbodyから部分一致検索し、ヒットしたものを@postsに代入する
   def search
     @posts = @search_form.search.includes(:user).page(params[:page])
   end

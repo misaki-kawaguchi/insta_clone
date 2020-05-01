@@ -10,7 +10,7 @@ class SearchPostsForm
   def search
     # Postモデルから重複するレコードを削除して取得
     scope = Post.distinct
-    # 本文が存在する場合、検索したい文字列を本文から完全一致検索する
+    # 本文が存在する場合、検索したい文字列を本文から部分一致検索する
     scope = scope.body_contain(body) if body.present?
     scope
   end
