@@ -1,5 +1,5 @@
 .col-md-4.mb-3
-/ posts/:idにリンクする
-  = link_to post_path(post), class: 'thumbs' do
-  / 投稿した画像の1枚目を表示
-   = image_tag post.images.first.url
+  / posts/:idにリンクする
+  = link_to post_path(thumbnail_post), class: 'thumbs' do
+    / 投稿した画像の1枚目を表示
+    = image_tag thumbnail_post.images.first.url
