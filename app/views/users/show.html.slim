@@ -1,13 +1,17 @@
 / ユーザー詳細ページ
 .container
   .row
-    .col-md-6.offset-md-3
+    .col-md-10.offset-md-1
       .card
         .card-body
           .text-center.mb-3
             = image_tag 'profile-placeholder.png', size: '100x100', class: 'rounded-circle mr-1'
           .profile.text-center.mb-3
             = @user.username
-            .text-center
+          .text-center
             / フォロー・アンフォローボタン
             = render 'follow_area', user: @user
+          hr
+          .row
+            / @user.postsの数だけ_thumbnail_post.html.slimが表示される
+            = render partial: 'posts/thumbnail_post', collection: @user.posts
