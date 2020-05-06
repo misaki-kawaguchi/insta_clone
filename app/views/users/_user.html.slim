@@ -2,7 +2,8 @@
 .user.mb-3.d-flex.justify-content-between
   /ユーザー詳細ページのリンク
   = link_to user_path(user) do
-    = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+    / アバター
+    = image_tag user.avatar.url, size: '40x40', class: 'rounded-circle mr-1'
     = user.username
   / フォロー・アンフォローボタン
   = render 'users/follow_area', user: user
