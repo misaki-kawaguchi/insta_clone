@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   # フォロー機能
   resources :relationships, only: %i[create destroy]
 
-  #プロフィール編集
+  # プロフィール編集
   namespace :mypage do
     resource :account, only: %i[edit update]
   end

@@ -1,5 +1,4 @@
 class Mypage::AccountsController < Mypage::BaseController
-
   # /mypage/account/edit
   # 現在ログインしているユーザーのidを探す
   def edit
@@ -14,7 +13,6 @@ class Mypage::AccountsController < Mypage::BaseController
       flash.now['danger'] = 'プロフィールの更新に失敗しました'
       render :edit
     end
-
   end
 
   private
