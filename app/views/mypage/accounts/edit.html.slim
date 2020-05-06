@@ -1,6 +1,6 @@
 = form_with model: @user, url: mypage_account_path, method: :patch, local: true do |f|
- = render 'shared/error_messages', object: f.object
- .form-group
+  = render 'shared/error_messages', object: f.object
+  .form-group
     / アバター
     = f.label :avatar
     / onchange:変更があった場合に処理を行う　accept: 'image/*':画像ファイル全般。
