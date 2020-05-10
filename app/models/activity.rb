@@ -25,6 +25,9 @@ class Activity < ApplicationRecord
   # subjectを利用してポリモーフィックス関連付けを行う
   belongs_to :subject, polymorphic: true
 
+  # 通知を新しい順に表示する、引数を渡すことにより表示件数を調整できる
+  scope :recent, ->(count) { order(created_at: :desc).limit(count)}
+
   # アクション区分
   # enum：モデルの数値カラムに対して文字列による名前定義をマップすることができる
   enum action_type: {
