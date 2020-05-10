@@ -33,10 +33,25 @@ class Activity < ApplicationRecord
     followed_me:           2  # フォロー
   }
 
-  #既読区分
+  # 既読区分
   enum read: {
     unread: false, #未読
     read:   true   #既読
   }
 
+  # リダイレクト先を設定
+  def redirect_path
+    # action_typeを比較対象とする（:commented_to_own_post、:liked_to_own_post、:followed_meに変換する）
+    case action_type.to_sym
+    # コメントの場合
+    when :commented_to_own_post
+      post_path(subject.post, anchor: "comment-#{subject.id}")
+    # いいねの場合
+    when :liked_to_own_post
+      post_path(subject.post)
+    # フォローの場合
+    when :followed_me
+      user_path(subject.follower)
+    end
+  end
 end
