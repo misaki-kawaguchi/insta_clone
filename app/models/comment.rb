@@ -22,6 +22,7 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-
+  # as: :subjectにより、ポリモーフィック関連付けする。relationshipが削除されるとactivityもで削除される
+  has_one :activity, as: :subject, dependent: :destroy
   validates :content, presence: true, length: { maximum: 300 }
 end

@@ -34,6 +34,8 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   # 中間テーブルlikesを経由してuserモデルを参照している（多対多）
   has_many :like_users, through: :likes, source: :user
+  # as: :subjectにより、ポリモーフィック関連付けする。relationshipが削除されるとactivityもで削除される
+  has_one :activity, as: :subject, dependent: :destroy
 
   # 検索用のスコープ
   # body_containというスコープを設定（検索したい文字列（word）をbody(本文）から完全一致検索する)

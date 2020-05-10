@@ -22,6 +22,8 @@
 class Like < ApplicationRecord
   belongs_to :user
   belongs_to :post
+  # as: :subjectにより、ポリモーフィック関連付けする。relationshipが削除されるとactivityもで削除される
+  has_one :activity, as: :subject, dependent: :destroy
   # 1つの投稿に対しては1ユーザー当たり1回しかいいねできない
   validates :user_id, uniqueness: { scope: :post_id }
 end

@@ -18,6 +18,8 @@ class Relationship < ApplicationRecord
   # FollowerモデルとFollowedモデルを作成（Userモデルからモデル名を変更）
   belongs_to :follower, class_name: 'User'
   belongs_to :followed, class_name: 'User'
+  # as: :subjectにより、ポリモーフィック関連付けする。relationshipが削除されるとactivityもで削除される
+  has_one :activity, as: :subject, dependent: :destroy
   # 空欄だとエラーになる
   validates :follower_id, presence: true
   validates :followed_id, presence: true

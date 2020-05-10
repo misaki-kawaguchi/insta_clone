@@ -22,5 +22,6 @@
 #
 class Activity < ApplicationRecord
   belongs_to :user
+  # subjectを利用してポリモーフィックス関連付けを行う
   belongs_to :subject, polymorphic: true
 end
