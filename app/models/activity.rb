@@ -24,4 +24,12 @@ class Activity < ApplicationRecord
   belongs_to :user
   # subjectを利用してポリモーフィックス関連付けを行う
   belongs_to :subject, polymorphic: true
+
+  # アクション区分
+  enum action_type: {
+    commented_to_own_post: 0, # コメント
+    liked_to_own_post:     1, # いいね
+    followed_me:           2  # フォロー
+  }
+
 end
