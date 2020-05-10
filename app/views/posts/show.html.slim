@@ -10,8 +10,8 @@
   .image-info-box
     .profile-box.p-3
       .d-flex.align-items-center
-        / アイコンとユーザーネーム
-        = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle mr-1'
+        / アイコン（アバター）とユーザーネーム
+        = image_tag @post.user.avatar.url, size: '40x40', class: 'rounded-circle mr-1'
         = @post.user.username
         / ログインしている且つ自分の投稿の場合は編集ボタンと削除ボタンが表示される
         - if current_user&.own?(@post)
@@ -29,7 +29,8 @@
       / 投稿の本文
       .row.no-gutters
         .col-2
-          = image_tag 'profile-placeholder.png', size: '40x40', class: 'rounded-circle'
+          / アバター
+          = image_tag @post.user.avatar.url, size: '40x40', class: 'rounded-circle'
         .col-10
           = simple_format(@post.body)
       hr

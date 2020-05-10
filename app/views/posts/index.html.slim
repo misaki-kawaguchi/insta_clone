@@ -14,8 +14,10 @@
       / ログインしている場合、サイドカラムに自分のアイコンとユーザー名が表示される
       - if logged_in?
         .profile-box.mb-3
-          = image_tag 'profile-placeholder.png', size: '50x50', class: 'rounded-circle mr-1'
-          = current_user.username
+          / アバター
+          = image_tag current_user.avatar.url, size: '50x50', class: 'rounded-circle mr-1'
+          / プロフィール編集ページ
+          = link_to current_user.username, edit_mypage_account_path
 
       .users-box
         .card
