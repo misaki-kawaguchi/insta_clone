@@ -1,2 +1,10 @@
-h1 Mypage::Activities#index
-p Find me in app/views/mypage/activities/index.html.slim
+/ お知らせがある場合
+- if @activities.present?
+  - @activities.each do |activity|
+    = render "#{activity.action_type}", activity: activity
+  = paginate @activities
+
+/ お知らせがない場合
+- else
+  .text-center
+    | お知らせはありません
