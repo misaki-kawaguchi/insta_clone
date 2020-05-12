@@ -26,4 +26,17 @@ class Like < ApplicationRecord
   has_one :activity, as: :subject, dependent: :destroy
   # 1つの投稿に対しては1ユーザー当たり1回しかいいねできない
   validates :user_id, uniqueness: { scope: :post_id }
+
+  # 誰かの投稿にいいねした時にcreate_activitiesを行う
+  after_create_commit :create_activities
+
+  private
+
+  def create_activities
+    Activity.create(
+      subject: self, # 自分自身と紐付ける
+      user: post.user, #誰の投稿にいいねしたか
+      action_type: :liked_to_own_post #アクションタイプを作成
+    )
+  end
 end

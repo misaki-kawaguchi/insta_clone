@@ -25,4 +25,17 @@ class Relationship < ApplicationRecord
   validates :followed_id, presence: true
   # follower_idとfollowed_idは重複しない
   validates :follower_id, uniqueness: { scope: :followed_id }
+  
+  # 誰かをフォローした時にcreate_activitiesを行う
+  after_create_commit :create_activities
+
+  private
+
+  def create_activities
+    Activity.create(
+      subject: self, # 自分自身と紐付ける
+      user: followed, # 誰をフォローしたか
+      action_type: :followed_me # アクションタイプを作成
+    )
+  end
 end
