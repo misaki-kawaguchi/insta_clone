@@ -1,5 +1,10 @@
+/ 通知をクリックするとフォローしたユーザーのページにとぶ。既読の場合はreadクラスを追加する。
 = link_to read_activity_path(activity), class: "dropdown-item border-bottom #{'read' if activity.read?}", method: :patch do
   = image_tag activity.subject.follower.avatar.url, class: 'rounded-circle mr-1', size: '30x30'
   object
+    / フォローしたユーザー
     = link_to activity.subject.follower.username, user_path(activity.subject.follower)
     | があなたをフォローしました
+    .text-right
+      / コメントされた日付（ja.ymlで設定した書式）
+      = l activity.created_at, format: :short
