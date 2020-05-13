@@ -1,8 +1,14 @@
+/ 通知がある場合
 - if current_user.activities.present?
+  / 最新の10件を表示する
   - current_user.activities.recent(10).each do |activity|
+    / action_typeでどのページにとぶか判断する
     = render "shared/#{activity.action_type}", activity: activity
+  / 通知が10件より多い場合
   - if current_user.activities.count > 10
+    / すべてを見るボタンを表示。通知一覧ページに飛ぶ
     = link_to 'すべてみる', mypage_activities_path, class: 'dropdown-item justify-content-center'
+/ 通知がない場合
 - else
   .dropdown-item
     | お知らせはありません
