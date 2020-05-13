@@ -9,6 +9,6 @@
     / いいねされた投稿
     = link_to '投稿', post_path(activity.subject.post)
   | にいいねしました
-  .text-right
+  .ml-auto
     / コメントされた日付（ja.ymlで設定した書式）
     = l activity.created_at, format: :short

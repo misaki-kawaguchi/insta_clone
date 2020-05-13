@@ -21,6 +21,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Activity < ApplicationRecord
+  # モデルで～_pathを使う場合に記述する
+  include Rails.application.routes.url_helpers
   belongs_to :user
   # subjectを利用してポリモーフィックス関連付けを行う
   belongs_to :subject, polymorphic: true
