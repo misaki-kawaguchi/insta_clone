@@ -4,7 +4,7 @@
   object
     / フォローしたユーザー
     = link_to activity.subject.follower.username, user_path(activity.subject.follower)
-    | があなたをフォローしました
-    .ml-auto
-      / コメントされた日付（ja.ymlで設定した書式）
-      = l activity.created_at, format: :short
+  | があなたをフォローしました
+  .ml-auto
+    / コメントされた日付（ja.ymlで設定した書式）
+    = l activity.created_at, format: :short
