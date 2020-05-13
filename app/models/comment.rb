@@ -34,7 +34,7 @@ class Comment < ApplicationRecord
   def create_activities
     Activity.create(
       subject: self, # 自分自身と紐付ける
-      user: post.user, #誰の投稿にコメントしたか
+      user: post.user, # 誰の投稿にコメントしたか
       action_type: :commented_to_own_post # アクションタイプを作成する
     )
   end

@@ -25,7 +25,7 @@ class Relationship < ApplicationRecord
   validates :followed_id, presence: true
   # follower_idとfollowed_idは重複しない
   validates :follower_id, uniqueness: { scope: :followed_id }
-  
+
   # 誰かをフォローした時にcreate_activitiesを行う
   after_create_commit :create_activities
 

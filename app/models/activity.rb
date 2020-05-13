@@ -28,20 +28,20 @@ class Activity < ApplicationRecord
   belongs_to :subject, polymorphic: true
 
   # 通知を新しい順に表示する、引数を渡すことにより表示件数を調整できる
-  scope :recent, ->(count) { order(created_at: :desc).limit(count)}
+  scope :recent, ->(count) { order(created_at: :desc).limit(count) }
 
   # アクション区分
   # enum：モデルの数値カラムに対して文字列による名前定義をマップすることができる
   enum action_type: {
     commented_to_own_post: 0, # コメント
-    liked_to_own_post:     1, # いいね
-    followed_me:           2  # フォロー
+    liked_to_own_post: 1, # いいね
+    followed_me: 2 # フォロー
   }
 
   # 既読区分
   enum read: {
-    unread: false, #未読
-    read:   true   #既読
+    unread: false, # 未読
+    read: true # 既読
   }
 
   # リダイレクト先を設定

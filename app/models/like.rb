@@ -35,8 +35,8 @@ class Like < ApplicationRecord
   def create_activities
     Activity.create(
       subject: self, # 自分自身と紐付ける
-      user: post.user, #誰の投稿にいいねしたか
-      action_type: :liked_to_own_post #アクションタイプを作成
+      user: post.user, # 誰の投稿にいいねしたか
+      action_type: :liked_to_own_post # アクションタイプを作成
     )
   end
 end
