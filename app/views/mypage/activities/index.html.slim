@@ -1,0 +1,10 @@
+/ お知らせがある場合
+- if @activities.present?
+  - @activities.each do |activity|
+    = render "#{activity.action_type}", activity: activity
+  = paginate @activities
+
+/ お知らせがない場合
+- else
+  .text-center
+    | お知らせはありません

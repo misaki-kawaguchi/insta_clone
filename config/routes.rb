@@ -25,8 +25,17 @@ Rails.application.routes.draw do
   # フォロー機能
   resources :relationships, only: %i[create destroy]
 
-  # プロフィール編集
+  # 既読管理 member:idを渡す（/activities/:id/read）
+  # path:更新する
+  # only: [] do：不要なルーティングを作成しないように
+  resources :activities, only: [] do
+    patch :read, on: :member
+  end
+
   namespace :mypage do
+    # プロフィール編集
     resource :account, only: %i[edit update]
+    # 通知
+    resources :activities, only: %i[index]
   end
 end

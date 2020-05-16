@@ -59,6 +59,9 @@ class User < ApplicationRecord
   # :sourceパラメーターを使いfollowers配列の元はfollower idの集合であることを明示的に伝える
   has_many :followers, through: :passive_relationships, source: :follower
 
+  # userが削除されるとactivityもで駆除される
+  has_many :activities, dependent: :destroy
+
   # 登録日が新しい順に表示する、引数を渡すことにより表示件数を調整できる
   scope :recent, ->(count) { order(created_at: :desc).limit(count) }
 
