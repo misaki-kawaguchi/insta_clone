@@ -62,4 +62,9 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.session_store :redis_store, servers: 'redis://localhost:6379', expire_after: 1.day
+
+  # デフォルトのURLを指定する
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
+  # config.action_mailer.delivery_methodは:letter_opener_webに変更する
+  config.action_mailer.delivery_method = :letter_opener_web
 end
