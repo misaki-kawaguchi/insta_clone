@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
         # コメント（current_user.comments.build(comment_params))
         comment: @comment
       ).comment_post.deliver_later
+    end
   end
 
   # ログインしているユーザーのコメントを探す

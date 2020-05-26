@@ -14,6 +14,7 @@ class LikesController < ApplicationController
         # 投稿（Post.find(params[:post_id])）
         post: @post
       ).like_post.deliver_later
+    end
   end
 
   # Likeモデルのlike_postsに追加したpost_idを探し、ログインしているユーザーはいいねを削除する

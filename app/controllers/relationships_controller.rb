@@ -11,6 +11,7 @@ class RelationshipsController < ApplicationController
         # 誰に（フォローされた人）：ユーザー
         user_to: @user,
       ).follow_user.deliver_later
+    end
   end
 
   # relationshipモデルからフォローしているユーザーを探し（followed_id）、ログインしているユーザーはフォローを解除する
