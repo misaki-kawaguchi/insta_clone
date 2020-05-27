@@ -4,14 +4,9 @@ class RelationshipsController < ApplicationController
   # ログインしているユーザーが別のユーザーをフォローする（followingにfollowed_id（フォローされたユーザーのID）を追加する）
   def create
     @user = User.find(params[:followed_id])
-    if current_user.follow(@user)
-      UserMailer.with(
-        # 誰から（フォローした人）：ログインしているユーザー
-        user_from: current_user,
-        # 誰に（フォローされた人）：ユーザー
-        user_to: @user,
-      ).follow_user.deliver_later
-    end
+    # フォロー後にメールを送る（follow_user.html.slimの内容）
+    # user_from（誰から）：ログインしているユーザー（いいねした人）、user_to（誰に）：ユーザー（フォローされた人）
+    UserMailer.with(user_from: current_user, user_to: @user).follow_user.deliver_later if current_user.follow(@user)
   end
 
   # relationshipモデルからフォローしているユーザーを探し（followed_id）、ログインしているユーザーはフォローを解除する

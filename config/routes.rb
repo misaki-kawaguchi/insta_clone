@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # letter_opnerのルーティングを設定
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

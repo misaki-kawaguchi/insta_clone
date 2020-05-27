@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
   # どのメールアドレスから送られたか設定
-  default from: "instaclone@example.com"
+  default from: 'instaclone@example.com'
 
   def like_post
     @user_from = params[:user_from]
