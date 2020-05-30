@@ -4,11 +4,16 @@
     .col-md-10.offset-md-1
       .card
         .card-body
+          / current_user&.id→メソッドがnilでなかった場合（ログインしている）のみメソッドが実行される
+          - if current_user&.id == @user.id
+            .profile.text-center.mb-3 
+              = link_to 'プロフィール編集', edit_mypage_account_path, class: 'btn btn-raised btn-warning'
           .text-center.mb-3
             / アバター
             = image_tag @user.avatar.url, size: '100x100', class: 'rounded-circle mr-1'
-          .profile.text-center.mb-3 
-            = link_to 'プロフィール編集', edit_mypage_account_path, class: 'btn btn-raised btn-warning'
+          .profile.text-center.mb-3
+            / ユーザー名
+            = @user.username
           .text-center
             / フォロー・アンフォローボタン
             = render 'follow_area', user: @user

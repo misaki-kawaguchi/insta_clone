@@ -1,0 +1,4 @@
+h2 = "#{@user_to.username}さん"
+p = "#{@user_from.username}さんがあなたをフォローしました。"
+/ メールからサイトに飛ぶので絶対パスが必要。_urlを使う。
+= link_to "確認する", user_url(@user_from)

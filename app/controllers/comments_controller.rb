@@ -4,7 +4,9 @@ class CommentsController < ApplicationController
   # ログインしているユーザーのコメントを作成し、保存する
   def create
     @comment = current_user.comments.build(comment_params)
-    @comment.save
+    # コメントした後にメールを送る（comment_post.html.slimの内容）
+    # user_from（誰から）：ログインしているユーザー（コメントした人）、user_to（誰に）：投稿したユーザー（コメントされた人）
+    UserMailer.with(user_from: current_user, user_to: @comment.post.user, comment: @comment).comment_post.deliver_later if @comment.save
   end
 
   # ログインしているユーザーのコメントを探す
