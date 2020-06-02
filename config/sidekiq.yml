@@ -1,0 +1,6 @@
+# Sidekiq の同時実行数
+:concurrency: 25
+# 処理するキュー名
+:queues:
+  - default
+  - mailers
