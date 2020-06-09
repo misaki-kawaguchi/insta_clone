@@ -46,5 +46,7 @@ Rails.application.routes.draw do
     resource :account, only: %i[edit update]
     # 通知
     resources :activities, only: %i[index]
+    # 通知設定
+    resource :notification_setting, only: %i[edit update]
   end
 end
