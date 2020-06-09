@@ -9,7 +9,7 @@ class Mypage::NotificationSettingsController < Mypage::BaseController
   def update
     @user = User.find(current_user.id)
     # 設定を更新できた場合
-    if @user.update(notification_setting_params)
+    if @user.update(notification_settings_params)
       redirect_to edit_mypage_notification_setting_path, success: '設定を更新しました'
     # 更新出来なかった場合
     else
