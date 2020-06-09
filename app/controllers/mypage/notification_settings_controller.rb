@@ -1,5 +1,4 @@
 class Mypage::NotificationSettingsController < Mypage::BaseController
-
   # /mypage/notification_setting/edit
   def edit
     @user = User.find(current_user.id)
