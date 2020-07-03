@@ -62,6 +62,18 @@ RSpec.describe User, type: :model do
       end
     end
 
-    
+    # いいねについて
+    describe 'like' do
+      it 'いいねできること' do
+        expect { user_a.like(post_by_user_b) }.to change { Like.count }.by(1)
+      end
+    end
+
+    describe 'unlike' do
+      it 'いいねを解除できること' do
+        user_a.like(post_by_user_b)
+        expect { user_a.unlike(post_by_user_b) }.to change { Like.count }.by(-1)
+      end
+    end
   end
 end
