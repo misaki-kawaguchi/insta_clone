@@ -75,5 +75,34 @@ RSpec.describe User, type: :model do
         expect { user_a.unlike(post_by_user_b) }.to change { Like.count }.by(-1)
       end
     end
+
+    # フォローについて
+    describe 'follow' do
+      it 'フォローできること' do
+        expect { user_a.follow(user_b) }.to change { Relationship.count }.by(1)
+      end
+    end
+
+    describe 'unfollow' do
+      it 'フォローを外せること' do
+        user_a.follow(user_b)
+        expect { user_a.unfollow(user_b) }.to change { Relationship.count }.by(-1)
+      end
+    end
+
+    describe 'following?' do
+      context 'フォローしている場合' do
+        it 'trueを返す' do
+          user_a.follow(user_b)
+          expect(user_a.following?(user_b)).to be true
+        end
+      end
+
+      context 'フォローしていない場合' do
+        it 'falseを返す' do
+          expect(user_a.following?(user_b)).to be false
+        end
+      end
+    end
   end
 end
