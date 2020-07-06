@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    # いいねについて
+    # いいねについて（レコードの増減を確認）
     describe 'like' do
       it 'いいねできること' do
         expect { user_a.like(post_by_user_b) }.to change { Like.count }.by(1)
@@ -76,7 +76,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    # フォローについて
+    # フォローについて（レコードの増減を確認）
     describe 'follow' do
       it 'フォローできること' do
         expect { user_a.follow(user_b) }.to change { Relationship.count }.by(1)
@@ -90,6 +90,7 @@ RSpec.describe User, type: :model do
       end
     end
 
+    # フォローをしているかどうか確認
     describe 'following?' do
       context 'フォローしている場合' do
         it 'trueを返す' do
@@ -110,7 +111,7 @@ RSpec.describe User, type: :model do
       before do
         user_a.follow(user_b)
       end
-      # subject を使ってテスト対象のオブジェクトを1箇所にまとめる
+      # subject を使ってテスト対象のオブジェクトを1箇所にまとめる、example の実行前に毎回呼ばれる
       subject { user_a.feed }
       it { is_expected.to include post_by_user_a }
       it { is_expected.to include post_by_user_b }
