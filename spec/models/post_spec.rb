@@ -18,4 +18,14 @@ RSpec.describe Post, type: :model do
       expect(post.errors[:body]).to include('は500文字以内で入力してください')
     end
   end
+
+  #スコープについて
+  describe 'スコープ' do
+    describe 'body_contain' do
+      # example の実行前に let! が実行される
+      let!(:post) { create(:post, body: 'hello world') }
+      subject { Post.body_contain('hello') }
+      it { is_expected.to include post }
+    end
+  end
 end
