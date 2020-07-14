@@ -66,4 +66,6 @@ RSpec.configure do |config|
 
   # Rspecのテストコードの中で、Factory_botのメソッドを使用する際にクラス名の指定を省略できる
   config.include FactoryBot::Syntax::Methods
+  # 指定したテストタイプ（system）でモジュール（SystemHelper）を読み込むことで、spec内でモジュールに定義された処理が使用できる
+  config.include SystemHelper, type: :system
 end
