@@ -14,6 +14,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # ヘッドレスモード（画面を起動しないモード）でChromeを実行する
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1920, 1080]
   end
