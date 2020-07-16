@@ -1,4 +1,4 @@
-.card.mb-5.post
+.card.mb-5.post id="post-#{post.id}"
   .card-header
     .d-flex.align-items-center
       / アバター
@@ -8,10 +8,10 @@
       - if current_user&.own?(post)
         .ml-auto
         / 削除ボタン
-        = link_to post_path(post),  class: 'mr-3', method: :delete, data: { confirm: '本当に削除しますか？' } do
+        = link_to post_path(post),  class: 'mr-3 delete-button', method: :delete, data: { confirm: '本当に削除しますか？' } do
           = icon 'far', 'trash-alt', class: 'fa-lg'
         / 編集ボタン
-        = link_to edit_post_path(post) do
+        = link_to edit_post_path(post), class: 'edit-button' do
           = icon 'far', 'edit', class: 'fa-lg'
   / 詳細ページ
   = link_to post_path(post) do
