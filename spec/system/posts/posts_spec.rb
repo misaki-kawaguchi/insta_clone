@@ -174,5 +174,47 @@ RSpec.describe '投稿', type: :system do
     end
   end
 
-  
+  describe 'いいね' do
+    # userがユーザー登録、投稿する
+    let!(:user) { create(:user) }
+    let!(:post) { create(:post) }
+
+    # ログインして投稿したユーザーをフォローする
+    before do
+      login_as user
+      user.follow(post.user)
+    end
+
+    it 'いいねをできること' do
+      # 投稿詳細ページにとぶ
+      visit post_path(post)
+      expect {
+        # 検索の影響範囲を制限する（いいねボタン）
+        within "#like_area-#{post.id}" do
+          # .like-buttonをクリック
+          find('.like-button').click
+          # cssが.unlike-buttonになることを検証する
+          expect(page).to have_css '.unlike-button'
+        end
+      # いいねした投稿の数が1になる
+      }.to change(user.like_posts, :count).by(1)
+    end
+
+    it 'いいねを取り消せること' do
+      # userが投稿をいいねする
+      user.like(post)
+      # 投稿詳細ページにとぶ
+      visit post_path(post)
+      expect {
+        # 検索の影響範囲を制限する（いいねボタン）
+        within "#like_area-#{post.id}" do
+          # .unlike-buttonをクリック
+          find('.unlike-button').click
+          # cssが.like-buttonになることを検証する
+          expect(page).to have_css '.like-button'
+        end
+      # いいねした投稿の数が-1になる
+      }.to change(user.like_posts, :count).by(-1)
+    end
+  end
 end
