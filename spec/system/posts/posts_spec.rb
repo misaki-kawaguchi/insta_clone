@@ -146,12 +146,25 @@ RSpec.describe '投稿', type: :system do
       # userはpost_1_by_othersのuserをフォローする
       user.follow(post_1_by_others.user)
       # 投稿一覧ページにとぶ
-      visit posts_path
+      visit root_path
       # 検索の影響範囲を制限する（投稿）
       within "#post-#{post_1_by_others.id}" do
         # .delete-buttonが存在しないどうかを確認する
         expect(page).not_to have_css '.delete-button'
       end
+    end
+
+    it '投稿が削除できること' do
+      # 投稿一覧ページにとぶ
+      visit root_path
+      within "#post-#{post_by_user.id}" do
+      # OKボタンを押す
+        page.accept_confirm { find('.delete-button').click }
+      end
+      # 投稿を削除しましたというテキストが存在するかどうかを確認する
+      expect(page).to have_content '投稿を削除しました'
+      # 投稿が削除されたかどうか検証する
+      expect(page).not_to have_content post_by_user.body
     end
   end
 
