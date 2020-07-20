@@ -5,6 +5,8 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'factory_bot'
+require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -30,6 +32,10 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+# spec/support配下のファイルを読み込み
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -64,4 +70,6 @@ RSpec.configure do |config|
 
   # Rspecのテストコードの中で、Factory_botのメソッドを使用する際にクラス名の指定を省略できる
   config.include FactoryBot::Syntax::Methods
+  # 指定したテストタイプ（system）でモジュール（SystemHelper）を読み込むことで、spec内でモジュールに定義された処理が使用できる
+  config.include SystemHelper, type: :system
 end
